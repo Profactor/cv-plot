@@ -32,7 +32,7 @@ jobs:
       working-directory: build
       run: pwd
     - name: cmake
-      working-directory: cv-plot\build
+      working-directory: build
       run: |
         pwd
         dir
