@@ -16,22 +16,26 @@ jobs:
     - name: install conan
       run: pip install --upgrade conan
     - name: create build dir
-      run: mkdir build
-    - name: pwd
+      working-directory: ${{ github.workspace }}
       run: |
         pwd
         dir
+        mkdir build
+        pwd
+        dir
     - name: conan install
-      working-directory: build
+      working-directory: ${{ github.workspace }}/build
       #run: conan install ..\cv-plot -s compiler.version='15'
       run: |
         pwd
         dir
         conan install ../cv-plot
+        pwd
+        dir
     - name: cmake
-      working-directory: build
+      working-directory: ${{ github.workspace }}/build
       #run: cmake .. -G "Visual Studio 15 Win64"
-      run: cmake .. -G "gcc"
+      run: cmake ../cv-plot -G "gcc"
     - name: build
       working-directory: cv-plot\build
       run: cmake --build . --config Release
