@@ -19,7 +19,7 @@ jobs:
       run: mkdir build & cd build & conan install ..\cv-plot
     - name: cmake
       working-directory: build
-      run: cmake ..\cv-plot -G "Visual Studio 16 Win64"
+      run: cmake ..\cv-plot -G "Visual Studio 15 Win64"
     - name: build
       working-directory: build
       run: cmake --build . --config Release
