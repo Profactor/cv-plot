@@ -16,7 +16,7 @@ jobs:
     - name: install conan
       run: pip install --upgrade conan
     - name: conan install
-      run: mkdir build & cd build & conan install ..
+      run: mkdir build & cd build & dir & conan install ..
     - name: cmake
       working-directory: build
       run: cmake .. -G "Visual Studio 15 Win64"
