@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - name: install conan
+      run: pip install --upgrade conan
+    - name: conan install
+      working-directory: build
+      run: conan install ..
+    - name: cmake
+      working-directory: build
+      run: cmake .. -G "Visual Studio 15 Win64"
+    - name: build
+      working-directory: build
+      run: cmake --build . --config Release
