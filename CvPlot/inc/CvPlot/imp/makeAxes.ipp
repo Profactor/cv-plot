@@ -11,7 +11,7 @@
 #include <CvPlot/drawables/VerticalGrid.h>
 #include <CvPlot/drawables/Series.h>
 #include <CvPlot/drawables/Image.h>
-#include <CvPlot/internal/util.h>
+#include <CvPlot/Internal/util.h>
 
 namespace CvPlot {
 

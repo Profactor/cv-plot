@@ -5,7 +5,7 @@
 
 #include <CvPlot/libdef.h>
 #include <CvPlot/core/DrawableDeque.h>
-#include <CvPlot/internal/no_warning.h>
+#include <CvPlot/Internal/no_warning.h>
 
 namespace CvPlot {
 

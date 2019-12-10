@@ -5,8 +5,8 @@
 
 #include <CvPlot/libdef.h>
 #include <opencv2/core.hpp>
-#include <CvPlot/internal/Pimpl.h>
-#include <CvPlot/internal/no_warning.h>
+#include <CvPlot/Internal/Pimpl.h>
+#include <CvPlot/Internal/no_warning.h>
 #include <CvPlot/core/Drawable.h>
 #include <CvPlot/drawables/MarkerType.h>
 #include <CvPlot/drawables/LineType.h>

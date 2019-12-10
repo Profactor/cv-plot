@@ -5,7 +5,7 @@
 
 #include <CvPlot/core/Axes.h>
 #include <opencv2/opencv.hpp>
-#include <CvPlot/internal/util.h>
+#include <CvPlot/Internal/util.h>
 #include <CvPlot/drawables/XLabel.h>
 #include <CvPlot/drawables/YLabel.h>
 #include <CvPlot/drawables/Title.h>

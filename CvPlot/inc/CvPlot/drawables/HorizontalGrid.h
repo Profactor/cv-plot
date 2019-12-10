@@ -4,7 +4,7 @@
 #pragma once
 
 #include <CvPlot/libdef.h>
-#include <CvPlot/internal/no_warning.h>
+#include <CvPlot/Internal/no_warning.h>
 #include <CvPlot/core/Drawable.h>
 #include <CvPlot/drawables/YAxis.h>
 #include <CvPlot/drawables/LineBase.h>

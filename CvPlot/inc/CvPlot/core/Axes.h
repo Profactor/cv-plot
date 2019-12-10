@@ -5,11 +5,11 @@
 
 #include <CvPlot/libdef.h>
 #include <opencv2/core.hpp>
-#include <CvPlot/internal/no_warning.h>
+#include <CvPlot/Internal/no_warning.h>
 #include <CvPlot/core/Drawable.h>
 #include <CvPlot/core/DrawableDeque.h>
 #include <CvPlot/core/Projection.h>
-#include <CvPlot/internal/Pimpl.h>
+#include <CvPlot/Internal/Pimpl.h>
 
 namespace CvPlot {
 

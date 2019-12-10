@@ -4,9 +4,9 @@
 #pragma once
 
 #include <CvPlot/libdef.h>
-#include <CvPlot/internal/no_warning.h>
+#include <CvPlot/Internal/no_warning.h>
 #include <CvPlot/core/Drawable.h>
-#include <CvPlot/internal/Pimpl.h>
+#include <CvPlot/Internal/Pimpl.h>
 
 namespace CvPlot {
 

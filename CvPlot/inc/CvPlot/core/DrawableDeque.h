@@ -7,7 +7,7 @@
 #include <CvPlot/core/Drawable.h>
 #include <deque>
 #include <memory>
-#include <CvPlot/internal/no_warning.h>
+#include <CvPlot/Internal/no_warning.h>
 #include <opencv2/core.hpp>
 
 namespace CvPlot {

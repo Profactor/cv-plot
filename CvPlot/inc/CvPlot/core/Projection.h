@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <CvPlot/internal/RawProjection.h>
+#include <CvPlot/Internal/RawProjection.h>
 #include <opencv2/core.hpp>
 
 namespace CvPlot {

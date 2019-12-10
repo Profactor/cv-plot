@@ -4,7 +4,7 @@
 #pragma once
 
 #include <CvPlot/drawables/YLabel.h>
-#include <CvPlot/internal/util.h>
+#include <CvPlot/Internal/util.h>
 #include <opencv2/opencv.hpp>
 
 namespace CvPlot {
