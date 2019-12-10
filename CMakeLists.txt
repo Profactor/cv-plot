@@ -9,11 +9,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
-if(CONAN_SETTINGS_BUILD_TYPE STREQUAL "Debug")
-    set(CMAKE_CONFIGURATION_TYPES Debug)
-else()
-    list(REMOVE_ITEM CMAKE_CONFIGURATION_TYPES Debug)    
-endif() 
 
 if (NOT CONAN_BIN_DIRS_OPENCV)
     #hack for static opencv from conan center
