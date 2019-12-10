@@ -16,8 +16,7 @@ jobs:
     - name: install conan
       run: pip install --upgrade conan
     - name: create build dir
-      #run: mkdir build
-      run: md build
+      run: mkdir build
     - name: conan install
       working-directory: build
       #run: conan install ..\cv-plot -s compiler.version='15'
