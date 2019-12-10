@@ -17,10 +17,17 @@ jobs:
       run: pip install --upgrade conan
     - name: create build dir
       run: mkdir build
+    - name: pwd
+      run: |
+        pwd
+        dir
     - name: conan install
       working-directory: build
       #run: conan install ..\cv-plot -s compiler.version='15'
-      run: conan install ../cv-plot
+      run: |
+        pwd
+        dir
+        conan install ../cv-plot
     - name: cmake
       working-directory: build
       #run: cmake .. -G "Visual Studio 15 Win64"
