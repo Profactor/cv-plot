@@ -4,5 +4,8 @@ opencv/4.1.1@conan/stable
 [generators]
 cmake
 
+[options]
+opencv:shared=True
+
 [imports]
 bin, *.dll -> ./bin
