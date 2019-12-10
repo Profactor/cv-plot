@@ -24,11 +24,11 @@ jobs:
     - name: dir1
       run: dir
     - name: dir2
-      working-directory: build
+      working-directory: cv-plot\build
       run: dir
     - name: cmake
-      working-directory: build
-      run: cmake ..\cv-plot -G "Visual Studio 15 Win64"
+      working-directory: cv-plot\build
+      run: cmake .. -G "Visual Studio 15 Win64"
     - name: build
-      working-directory: build
+      working-directory: cv-plot\build
       run: cmake --build . --config Release
