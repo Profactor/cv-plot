@@ -1,3 +1,6 @@
+# CvPlot - https://github.com/wpalfi/cv-plot
+# Copyright (c) 2019 by PROFACTOR GmbH - https://www.profactor.at/
+
 set(target CvPlotTests)
 project(${target} CXX)
 cmake_minimum_required (VERSION 3.9)

@@ -1,5 +1,6 @@
 // CvPlot - https://github.com/wpalfi/cv-plot
 // Copyright (c) 2019 by PROFACTOR GmbH - https://www.profactor.at/
+
 #include <catch.hpp>
 #include <CvPlot/cvplot.h>
 #include <opencv2/highgui/highgui.hpp>
