@@ -15,8 +15,12 @@ jobs:
         architecture: 'x64'
     #- name: install conan
     #  run: pip install --upgrade conan
-    - name: conan install
-      run: mkdir build & cd build #& conan install ..\cv-plot -s compiler.version='15'
+
+    - name: create build dir
+      run: mkdir build
+    #- name: conan install
+    #  working-directory: build
+    #  run: conan install ..\cv-plot -s compiler.version='15'
     - name: dir1
       run: dir
     - name: dir2
