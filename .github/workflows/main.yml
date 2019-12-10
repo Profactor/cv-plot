@@ -13,6 +13,8 @@ jobs:
       with:
         python-version: '3.x'
         architecture: 'x64'
+    - name: dir
+      run: dir
     - name: install conan
       run: pip install --upgrade conan
     - name: conan install
