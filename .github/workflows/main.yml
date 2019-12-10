@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: windows-2019
+    runs-on: ubuntu-latest #windows-2019
 
     steps:
     - uses: actions/checkout@v1
@@ -15,28 +15,16 @@ jobs:
         architecture: 'x64'
     #- name: install conan
     #  run: pip install --upgrade conan
-
     - name: create build dir
       run: mkdir build
-    #- name: conan install
-    #  working-directory: build
-    #  run: conan install ..\cv-plot -s compiler.version='15'
-    - name: dir1
-      run: dir
-    - name: dir2
+    - name: conan install
       working-directory: build
-      run: dir
-    - name: pwd1
-      run: pwd
-    - name: pwd2
-      working-directory: build
-      run: pwd
+      #run: conan install ..\cv-plot -s compiler.version='15'
+      run: conan install ../cv-plot
     - name: cmake
       working-directory: build
-      run: |
-        pwd
-        dir
-        cmake .. -G "Visual Studio 15 Win64"
+      #run: cmake .. -G "Visual Studio 15 Win64"
+      run: cmake .. -G "gcc"
     - name: build
       working-directory: cv-plot\build
       run: cmake --build . --config Release
