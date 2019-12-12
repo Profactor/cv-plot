@@ -19,16 +19,19 @@ inline void show(const std::string &windowName, Axes &axes, int rows = 480, int 
 
 //arguments: see Series constructor
 inline void showPlot(cv::InputArray x, cv::InputArray y, const std::string &lineSpec = "-") {
-	show("CvPlot", plot(x, y, lineSpec));
+    auto axes = plot(x, y, lineSpec);
+	show("CvPlot", axes);
 }
 
 //arguments: see Series constructor
 inline void showPlot(cv::InputArray data, const std::string &lineSpec = "-") {
-	show("CvPlot", plot(data, lineSpec));
+    auto axes = plot(data, lineSpec);
+	show("CvPlot", axes);
 }
 
 inline void showImage(const cv::Mat &mat) {
-	show("CvPlot", plotImage(mat));
+    auto axes = plotImage(mat);
+	show("CvPlot", axes);
 }
 
 }
