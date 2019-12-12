@@ -23,7 +23,7 @@ public:
 	}
 	void render(RenderTarget & renderTarget) {
 		cv::Mat3b &outerMat = renderTarget.outerMat();
-		cv::Rect &innerRect = renderTarget.innerRect();
+		auto innerRect = renderTarget.innerRect();
 		if (!innerRect.area() || _label.empty()) {
 			return;
 		}

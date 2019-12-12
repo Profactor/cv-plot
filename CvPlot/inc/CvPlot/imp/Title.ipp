@@ -21,7 +21,7 @@ public:
 	}
 	void render(RenderTarget & renderTarget) {
 		cv::Mat3b &outerMat = renderTarget.outerMat();
-		cv::Rect &innerRect = renderTarget.innerRect();
+		auto innerRect = renderTarget.innerRect();
 		int xcenter = innerRect.x + innerRect.width / 2;
 		int baseline;
 		cv::Size size = cv::getTextSize(_title, _fontFace, _fontScale, _fontThickness, &baseline);
