@@ -11,7 +11,7 @@
 namespace {
 
 cv::Mat lenna() {
-	auto mat = cv::imread("exampledata/lenna.jpg");
+	auto mat = cv::imread("exampledata/Lenna.jpg");
 	CHECK(!mat.empty());
 	return mat;
 }

@@ -9,7 +9,7 @@
 namespace {
 
 cv::Mat lenna() {
-	auto mat = cv::imread("testdata/lenna.jpg");
+	auto mat = cv::imread("testdata/Lenna.jpg");
 	CHECK(!mat.empty());
 	return mat;
 }
