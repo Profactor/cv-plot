@@ -292,8 +292,9 @@ CVPLOT_DEFINE_FUN cv::Mat3b Axes::render(int rows, int cols)const {
 }
 
 CVPLOT_DEFINE_FUN
-void Axes::render(cv::Mat & mat) const{
-	impl->render(mat, mat.size());
+void Axes::render(const cv::Mat & mat) const{
+    cv::Mat m(mat);
+	impl->render(m, m.size());
 }
 
 CVPLOT_DEFINE_FUN

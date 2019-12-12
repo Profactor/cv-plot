@@ -23,7 +23,7 @@ public:
 	Axes& setMargins(int left, int right, int top, int bottom);
 	
 	cv::Mat3b render(int rows = 480, int cols = 640)const;
-	void render(cv::Mat &mat)const;
+	void render(const cv::Mat &mat)const;
 	void render(cv::Mat &mat, cv::Size size)const;
 	
 	Axes& xLabel(const std::string &label);
