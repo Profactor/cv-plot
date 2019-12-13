@@ -10,8 +10,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
-if (NOT CONAN_BIN_DIRS_OPENCV)
-    #hack for static opencv from conan center
+#hack for static opencv from conan center
+if(NOT CONAN_BIN_DIRS_OPENCV OR EXISTS "${CONAN_LIB_DIRS_OPENCV}/libopencv_core.a")
     set(OpenCV_STATIC ON)
     set(CONAN_LIBTIFF_ROOT ${CONAN_TIFF_ROOT})    
     find_package(Eigen3 REQUIRED)
