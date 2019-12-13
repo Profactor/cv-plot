@@ -245,13 +245,13 @@ public:
 			setTransformation(nullptr);
 		}
 		if (!_xLog && _yLog) {
-			setTransformation(std::make_unique<LinLogTransformation>());
+			setTransformation(std::unique_ptr<LinLogTransformation>(new LinLogTransformation()));
 		}
 		if (_xLog && !_yLog) {
-			setTransformation(std::make_unique<LogLinTransformation>());
+			setTransformation(std::unique_ptr<LogLinTransformation>(new LogLinTransformation()));
 		}
 		if (_xLog && _yLog) {
-			setTransformation(std::make_unique<LogLogTransformation>());
+			setTransformation(std::unique_ptr<LogLogTransformation>(new LogLogTransformation()));
 		}
 	}
 };

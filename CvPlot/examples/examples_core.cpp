@@ -308,7 +308,7 @@ TEST_CASE("custom_transformation") {
 	Axes axes;
 	axes.setFixedAspectRatio();
 	axes.setMargins(0, 0, 0, 0);
-	axes.setTransformation(std::make_unique<MyPolarTransformation>());
+	axes.setTransformation(std::unique_ptr<MyPolarTransformation>(new MyPolarTransformation));
 	std::vector<double> y(1000), x(y.size());
 	for (size_t i = 0; i < y.size(); i++) {
 		x[i] = i * CV_2PI / (y.size()-1);
@@ -339,7 +339,7 @@ TEST_CASE("mandelbrot") {
 }
 
 TEST_CASE("benchmark_Series") {
-	const size_t n = 100'000;
+	const size_t n = 10000;
 	cv::Mat1d x(1, n), y(1, n);
 	cv::randu(x, 0, 1);
 	cv::randu(y, 0, 1);
@@ -389,7 +389,7 @@ TEST_CASE("benchmark_Image") {
 				plotImage(image).render(renderWidth, renderWidth);
 				count++;
 				elapsed = duration<double>(steady_clock::now() - start).count();
-			} while (elapsed < .2);
+			} while (elapsed < .05);
 			double fps = count / elapsed;
 			vec.push_back({(double)imageWidth,fps});
 		}

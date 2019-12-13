@@ -53,7 +53,7 @@ private:
 
 template<typename SomeDrawable, typename... Args>
 SomeDrawable& DrawableDeque::create(Args&&... args) {
-	auto ptr = std::make_unique<SomeDrawable>(std::forward<Args>(args)...);
+	std::unique_ptr<SomeDrawable> ptr(new SomeDrawable(std::forward<Args>(args)...));
 	SomeDrawable& ref = *ptr.get();
 	_drawables.push_back(std::move(ptr));
 	return ref;
