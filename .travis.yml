@@ -8,7 +8,7 @@ install:
   - pip install conan
   - conan user
 script:
-  - conan install . -o opencv:shared=True
+  - conan install . -o opencv:shared=True  -s compiler.libcxx=libstdc++11
   - cmake . -G "Unix Makefiles"
   - cmake --build .
   - cd build/bin
