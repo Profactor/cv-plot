@@ -90,6 +90,8 @@ else()
 	endif()
 endif()
 
+target_compile_features(${target} PUBLIC cxx_std_11)
+
 #OpenCV
 if(NOT OpenCV_LIBS)
     find_package(OpenCV REQUIRED)
