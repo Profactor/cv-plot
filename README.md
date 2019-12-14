@@ -8,6 +8,8 @@ https://github.com/wpalfi/cv-plot-conan
 #### github
 ![](https://github.com/wpalfi/cv-plot/workflows/CI/badge.svg)
 
+[![Build status](https://github.com/wpalfi/cv-plot/workflows/CI/badge.svg)](https://github.com/wpalfi/cv-plot/actions)
+
 #### appveyor
 [![Build status](https://ci.appveyor.com/api/projects/status/2bqhfcoh0q4w2gc8/branch/master?svg=true)](https://ci.appveyor.com/project/WernerPalfinger/cv-plot/branch/master)
 
