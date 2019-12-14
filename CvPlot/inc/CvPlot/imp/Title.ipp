@@ -17,8 +17,6 @@ public:
 	const int _fontThickness = 1;
 	cv::Scalar _color = cv::Scalar(0, 0, 0);
 
-	int getTextWidth(const std::string &text) {
-	}
 	void render(RenderTarget & renderTarget) {
 		cv::Mat3b &outerMat = renderTarget.outerMat();
 		auto innerRect = renderTarget.innerRect();
