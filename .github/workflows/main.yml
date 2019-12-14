@@ -29,7 +29,7 @@ jobs:
       run: |
         pwd
         dir
-        conan install ..
+        conan install .. -s compiler.libcxx=libstdc++11
         pwd
         dir
     - name: cmake
