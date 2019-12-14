@@ -10,6 +10,7 @@ namespace CvPlot {
 
 class Transformation{
 public:
+    virtual ~Transformation(){}
 	virtual cv::Point2d transform(const cv::Point2d &point)const = 0;
 	virtual cv::Point2d untransform(const cv::Point2d &point)const = 0;
 	virtual cv::Rect2d transformBoundingRect(const cv::Rect2d &r)const {
