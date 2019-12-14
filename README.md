@@ -6,8 +6,6 @@ https://github.com/wpalfi/cv-plot-conan
 
 ## CI
 #### github
-![](https://github.com/wpalfi/cv-plot/workflows/CI/badge.svg)
-
 [![Build status](https://github.com/wpalfi/cv-plot/workflows/CI/badge.svg)](https://github.com/wpalfi/cv-plot/actions)
 
 #### appveyor
