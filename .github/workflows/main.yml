@@ -17,21 +17,11 @@ jobs:
       run: pip install --upgrade conan
     - name: create build dir
       working-directory: ${{ github.workspace }}
-      run: |
-        pwd
-        dir
-        mkdir build
-        pwd
-        dir
+      run: mkdir build
     - name: conan install
       working-directory: ${{ github.workspace }}/build
       #run: conan install ..\cv-plot -s compiler.version='15'
-      run: |
-        pwd
-        dir
-        conan install .. -s compiler.libcxx=libstdc++11
-        pwd
-        dir
+      run: conan install .. -s compiler.libcxx=libstdc++11
     - name: cmake
       working-directory: ${{ github.workspace }}/build
       #run: cmake .. -G "Visual Studio 15 Win64"
