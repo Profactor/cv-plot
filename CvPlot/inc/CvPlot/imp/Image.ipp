@@ -27,7 +27,9 @@ cv::Mat1b toMat1b(const cv::Mat& mat) {
 CVPLOT_DEFINE_FUN
 cv::Mat3b toMat3b(const cv::Mat& mat, int code) {
     cv::Mat3b mat3b;
-    cv::cvtColor(mat, mat3b, code);
+    if (!mat.empty()) {
+        cv::cvtColor(mat, mat3b, code);
+    }
     return mat3b;
 }
 
