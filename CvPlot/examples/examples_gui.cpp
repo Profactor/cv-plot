@@ -39,7 +39,7 @@ TEST_CASE("live_image") {
 		axes.title(std::to_string(count++));
 		axes.find<Image>()->setMat(getLive());
 		window.update();
-	} while (cv::waitKey(1)==-1);
+    } while (window.waitKey(1) == -1 && window.valid());
 }
 
 TEST_CASE("multiple_Windows") {
@@ -51,7 +51,7 @@ TEST_CASE("multiple_Windows") {
 	Window window2(testCaseName() + " 2", axes2, 400, 400);
 	cv::moveWindow(testCaseName() + " 2", 750, 300);
 	
-	cv::waitKey();
+    Window::waitKey({ &window,&window2 });
 }
 
 TEST_CASE("paint") {
@@ -67,7 +67,7 @@ TEST_CASE("paint") {
 		}
 		return false;
 	});
-	cv::waitKey();
+	window.waitKey();
 }
 
 TEST_CASE("linked_viewports") {
@@ -106,7 +106,7 @@ TEST_CASE("linked_viewports") {
 		return false; //no update required for window2
 	});
 
-	cv::waitKey();
+    Window::waitKey({ &window1,&window2 });
 }
 
 TEST_CASE("profile") {
@@ -165,7 +165,8 @@ TEST_CASE("profile") {
 		windowImage.update();
 		return true; //updates windowProfile
 	});
-	cv::waitKey();
+
+    Window::waitKey({ &windowImage,&windowProfile });
 }
 
 TEST_CASE("dragpoint") {
@@ -219,6 +220,6 @@ TEST_CASE("dragpoint") {
 		return myDragPoint.mouseEvent(mouseEvent);
 	});
 
-	cv::waitKey();
+	window.waitKey();
 }
 
