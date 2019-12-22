@@ -37,6 +37,9 @@ public:
 	SomeDrawable& findOrCreate();
 
     template<typename SomeDrawable>
+    SomeDrawable& findOrCreate(const std::string &name);
+
+    template<typename SomeDrawable>
     Drawables::iterator findIterator(const std::string &name);
 
     template<typename SomeDrawable>
@@ -95,6 +98,17 @@ template<typename SomeDrawable>
 SomeDrawable& DrawableDeque::findOrCreate() {
 	SomeDrawable *p = find<SomeDrawable>();
 	return p ? *p : create<SomeDrawable>();
+}
+
+template<typename SomeDrawable>
+SomeDrawable& DrawableDeque::findOrCreate(const std::string &name) {
+    SomeDrawable *p = find<SomeDrawable>(name);
+    if (p) {
+        return *p;
+    }
+    SomeDrawable& someDrawable = create<SomeDrawable>();
+    someDrawable.setName(name);
+    return someDrawable;
 }
 
 }
