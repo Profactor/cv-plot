@@ -14,7 +14,7 @@ namespace CvPlot {
 
 inline void show(const std::string &windowName, Axes &axes, int rows = 480, int cols = 640) {
 	Window window(windowName, axes, rows, cols);
-	cv::waitKey();
+	window.waitKey();
 }
 
 //arguments: see Series constructor
