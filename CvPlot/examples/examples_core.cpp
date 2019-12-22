@@ -339,7 +339,7 @@ TEST_CASE("mandelbrot") {
 }
 
 TEST_CASE("benchmark_Series") {
-	const size_t n = 10000;
+	const size_t n = 100000;
 	cv::Mat1d x(1, n), y(1, n);
 	cv::randu(x, 0, 1);
 	cv::randu(y, 0, 1);
@@ -349,7 +349,8 @@ TEST_CASE("benchmark_Series") {
 		vec.reserve(100);
 		for (double p = 0; p <= 5; p += .5) {
 			int points = (int)std::pow(10, p);
-			using namespace std::chrono;
+            REQUIRE(points <= n);
+            using namespace std::chrono;
 			auto start = steady_clock::now();
 			int count = 0;
 			double elapsed;
@@ -357,7 +358,7 @@ TEST_CASE("benchmark_Series") {
 				plot(x.colRange(0, points), y.colRange(0, points), "-").render(renderWidth, renderWidth);
 				count++;
 				elapsed = duration<double>(steady_clock::now() - start).count();
-			} while (elapsed < .2);
+			} while (elapsed < .05);
 			double fps = count / elapsed;
 			vec.push_back({(double)points,fps});
 		}
@@ -374,10 +375,20 @@ TEST_CASE("benchmark_Series") {
 }
 
 TEST_CASE("benchmark_Image") {
-	std::map<int, std::vector<cv::Point2d>> result;
-	for (int renderWidth : {100, 500, 1000}) {
-		auto &vec = result[renderWidth];
-		vec.reserve(100);
+    auto axes = makePlotAxes();
+    axes.setXLog();
+    axes.setYLog();
+    axes.xLabel("source image width and height");
+    axes.yLabel("frames per second");
+    Window window(testCaseName(), axes);
+    const std::vector<int> renderWidths = { 100, 500, 1000 };
+    const std::vector<std::string> lineSpecs = { "r-", "g-", "b-" };
+    std::string title = testCaseName() + " ";
+    for (int i = 0; i < 3; i++) {
+        title += " " + lineSpecs[i] + ": " + std::to_string(renderWidths[i]) + "px";
+        axes.title(title);
+        std::vector<cv::Point2d> points;
+        points.reserve(100);
 		for (double p = 0; p <= 4; p += .1) {
 			int imageWidth = (int)std::pow(10, p);
 			cv::Mat1b image(imageWidth, imageWidth);
@@ -386,21 +397,18 @@ TEST_CASE("benchmark_Image") {
 			int count = 0;
 			double elapsed;
 			do {
-				plotImage(image).render(renderWidth, renderWidth);
+				plotImage(image).render(renderWidths[i], renderWidths[i]);
 				count++;
 				elapsed = duration<double>(steady_clock::now() - start).count();
 			} while (elapsed < .05);
 			double fps = count / elapsed;
-			vec.push_back({(double)imageWidth,fps});
+            points.push_back({(double)imageWidth,fps});
+            axes.findOrCreate<Series>(std::to_string(renderWidths[i]))
+                .setPoints(points)
+                .setLineSpec(lineSpecs[i]);
+            window.update();
+            window.waitKey(1);
 		}
 	}
-	auto axes = makePlotAxes();
-	axes.setXLog();
-	axes.setYLog();
-	axes.xLabel("source image width and height");
-	axes.yLabel("frames per second");
-	for (const auto &pair : result) {
-		axes.create<Series>(pair.second);
-	}
-	show(testCaseName(), axes);
+    window.waitKey();
 }
