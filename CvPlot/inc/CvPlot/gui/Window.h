@@ -8,6 +8,7 @@
 #include <CvPlot/gui/MouseAdapter.h>
 #include <string>
 #include <opencv2/highgui.hpp>
+#include <algorithm>
 
 namespace CvPlot {
 
@@ -20,10 +21,14 @@ public:
 	Axes& getAxes();
 	void update();
 	void setMouseEventHandler(MouseEventHandler mouseEventHandler);
+    bool valid() const;
+    int waitKey(int delay = 0);
+    static int waitKey(const std::vector<Window*> &windows, int delay = 0);
 private:
     MouseAdapter _mouseAdapter;
     std::string _windowName;
     cv::Mat3b _mat;
+    void updateSize();
 };
 
 inline
@@ -32,11 +37,13 @@ Window::Window(std::string windowName, Axes &axes, int rows, int cols)
     , _windowName(windowName) {
 
     cv::destroyWindow(windowName); //destroy opencv window if existing
-    cv::namedWindow(windowName, cv::WINDOW_AUTOSIZE); //resizing not supported (no way to detect window size changes)
+    cv::namedWindow(windowName, cv::WINDOW_NORMAL);
+    cv::resizeWindow(windowName, { cols,rows });
     axes.render(_mat, cv::Size(cols, rows));
     cv::imshow(windowName, _mat);
     cv::setMouseCallback(windowName, [](int event, int x, int y, int flags, void* userdata) {
         Window& window = *static_cast<Window*>(userdata);
+        window.updateSize();
         MouseEvent mouseEvent(window._mouseAdapter.getAxes(), window._mat.size(), event, x, y, flags);
         if (window._mouseAdapter.mouseEvent(mouseEvent)) {
             window.update();
@@ -63,13 +70,67 @@ Axes& Window::getAxes() {
 
 inline
 void Window::update() {
-    _mouseAdapter.getAxes().render(_mat);
-    cv::imshow(_windowName, _mat);
+    auto rect = cv::getWindowImageRect(_windowName);
+    _mouseAdapter.getAxes().render(_mat, rect.size());
+    if (!_mat.empty()) {
+        cv::imshow(_windowName, _mat);
+    }
 }
 
 inline
 void Window::setMouseEventHandler(MouseEventHandler mouseEventHandler) {
     _mouseAdapter.setMouseEventHandler(mouseEventHandler);
+}
+
+inline
+bool Window::valid() const {
+    return cv::getWindowImageRect(_windowName).width > 0;
+}
+
+inline
+int Window::waitKey(int delay){
+    return waitKey({ this }, delay);
+}
+
+inline 
+int Window::waitKey(const std::vector<Window*> &windows, int delay) {
+    const auto endTickCount = cv::getTickCount() + (int64)(delay * 0.001f * cv::getTickFrequency());
+
+    while (true) {
+        //wait for short period
+        int key = cv::waitKey(1);
+        if (key != -1) {
+            return key;
+        }
+
+        //timed out?
+        if (delay > 0 && cv::getTickCount() - endTickCount >= 0) {
+            return -1;
+        }
+
+        //all windows closed?
+        if (std::all_of(windows.begin(), windows.end(), [](Window *window) {
+            return !window->valid();
+        })) {
+            return -1;
+        }
+
+        //update window sizes
+        for (auto window : windows) {
+            window->updateSize();
+        }
+    }
+}
+
+inline
+void Window::updateSize() {
+    if (!valid()) {
+        return;
+    }
+    auto rect = cv::getWindowImageRect(_windowName);
+    if(rect.size() != _mat.size()) {
+        update();
+    }
 }
 
 }
