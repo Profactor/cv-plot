@@ -26,6 +26,16 @@ private:
     CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
+
+template<typename Derived>
+class DrawableSub :public Drawable {
+public:
+    using Drawable::Drawable;
+    Derived& setName(std::string name) {
+        return static_cast<Derived&>(Drawable::setName(name));
+    }
+};
+
 }
 
 #ifdef CVPLOT_HEADER_ONLY
