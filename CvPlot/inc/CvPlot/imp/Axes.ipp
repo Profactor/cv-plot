@@ -64,6 +64,9 @@ public:
 	}
 
 	void render(cv::Mat &mat, cv::Size destinationSize) const{
+        if (destinationSize.width < 0 || destinationSize.height < 0) {
+            destinationSize = { 0,0 };
+        }
 		RawProjection rawProjection = getRawProjection(destinationSize);
 		mat.create(destinationSize, CV_8UC3);
 		cv::Mat3b mat3b(mat);
