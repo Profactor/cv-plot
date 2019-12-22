@@ -13,7 +13,7 @@
 
 namespace CvPlot {
 
-class CVPLOT_LIBRARY_INTERFACE LineBase : public Drawable {
+class CVPLOT_LIBRARY_INTERFACE LineBase : public DrawableSub<LineBase>{
 public:
 	LineBase(const std::string &lineSpec = "-");
 	~LineBase();
@@ -35,6 +35,9 @@ template<typename Derived>
 class LineBaseSub :public LineBase {
 public:
 	using LineBase::LineBase;
+    Derived& setName(std::string name) {
+        return static_cast<Derived&>(Drawable::setName(name));
+    }
 	Derived& setLineSpec(const std::string &lineSpec) {
 		return static_cast<Derived&>(LineBase::setLineSpec(lineSpec));
 	}
