@@ -1,4 +1,4 @@
-# CvPlot - https://github.com/wpalfi/cv-plot
+# CvPlot - https://github.com/Profactor/cv-plot
 # Copyright (c) 2019 by PROFACTOR GmbH - https://www.profactor.at/
 
 set(target CvPlotTests)
