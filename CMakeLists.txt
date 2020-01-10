@@ -13,7 +13,6 @@ conan_basic_setup(TARGETS)
 #hack for static opencv from conan center
 if(NOT CONAN_BIN_DIRS_OPENCV OR EXISTS "${CONAN_LIB_DIRS_OPENCV}/libopencv_core.a")
     set(OpenCV_STATIC ON)
-    set(CONAN_LIBTIFF_ROOT ${CONAN_TIFF_ROOT})    
     find_package(Eigen3 REQUIRED)
     
     find_package(protobuf REQUIRED)
