@@ -10,14 +10,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
-#hack for static opencv from conan center
-if(NOT CONAN_BIN_DIRS_OPENCV OR EXISTS "${CONAN_LIB_DIRS_OPENCV}/libopencv_core.a")
-    set(OpenCV_STATIC ON)
-    find_package(Eigen3 REQUIRED)
-    
-    find_package(protobuf REQUIRED)
-    add_library(libprotobuf INTERFACE)
-    target_link_libraries(libprotobuf INTERFACE protobuf::libprotobuf)
-endif()
+#dont use find_package(OpenCV)
+#(OpenCVConfig.cmake has some problems with conan package)
+set(OpenCV_LIBS CONAN_PKG::opencv)
 
 add_subdirectory(CvPlot)
