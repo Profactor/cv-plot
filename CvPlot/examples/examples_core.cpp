@@ -69,6 +69,23 @@ TEST_CASE("show") {
 	showImage(lenna());
 }
 
+TEST_CASE("contours") {
+    cv::Mat1b image(40, 120, 255);
+    cv::putText(image, "CvPlot", { 5,30 }, cv::FONT_HERSHEY_TRIPLEX, 1, cv::Scalar::all(200), 5, cv::LINE_AA);
+    std::vector<std::vector<cv::Point>> contours;
+    cv::findContours(image == 200, contours, cv::RETR_LIST, cv::CHAIN_APPROX_TC89_L1);
+    
+    Axes axes = plotImage(image);
+    //create grid in front of image
+    axes.create<HorizontalGrid>(axes.find<YAxis>()).setColor(cv::Scalar::all(150));
+    axes.create<VerticalGrid>(axes.find<XAxis>()).setColor(cv::Scalar::all(150));
+    for (auto contour : contours) {
+        contour.push_back(contour.front()); //close polygon
+        axes.create<Series>(contour, "k-o");
+    }
+    show(testCaseName(), axes);
+}
+
 TEST_CASE("Data") {
 	//supported inputs for data argument in Series(), plot(), showPlot()
 	Axes axes = makePlotAxes();
