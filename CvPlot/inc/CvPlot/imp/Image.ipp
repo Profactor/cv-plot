@@ -70,8 +70,9 @@ public:
 	int _interpolation = cv::INTER_AREA;
     cv::Scalar _nanColor;
 
-	cv::Mat3b _flipped;
-	bool _flipVert = false;
+    cv::Mat _flippedMat;
+    cv::Mat3b _flippedBgr;
+    bool _flipVert = false;
 	bool _flipHorz = false;
 
 	void updateFlipped() {
@@ -80,9 +81,17 @@ public:
 		}
 		if (_flipVert || _flipHorz) {
 			int code = (_flipVert&&_flipHorz) ? -1 : (_flipVert ? 0 : +1);
-			cv::flip(_matBgr, _flipped, code);
-		}else {
-			_flipped = _matBgr;
+            if (_flippedMat.data == _mat.data) {
+                _flippedMat = _flippedMat.clone();
+            }
+            if (_flippedBgr.data == _matBgr.data) {
+                _flippedBgr = _matBgr.clone();
+            }
+            cv::flip(_mat, _flippedMat, code);
+            cv::flip(_matBgr, _flippedBgr, code);
+        }else {
+            _flippedMat = _mat;
+			_flippedBgr = _matBgr;
 		}
 	}
 	void render(RenderTarget & renderTarget) {
@@ -103,7 +112,7 @@ public:
 			_flipVert = flipVert;
 			updateFlipped();
 		}
-		Internal::paint(_flipped, innerMat, matRectDst, _interpolation, _mat);
+		Internal::paint(_flippedBgr, innerMat, matRectDst, _interpolation, _flippedMat);
 	}
 	void updateAutoPosition() {
 		if (_autoPosition) {
