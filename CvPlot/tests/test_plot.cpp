@@ -74,3 +74,42 @@ TEST_CASE("name") {
     CHECK(axes.drawables().size() == 2);
 }
 
+TEST_CASE("flip_image") {
+    Axes axes;
+    axes.setFixedAspectRatio();
+    axes.setXTight();
+    axes.setYTight();
+    axes.setTightBox();
+    axes.setMargins(0, 0, 0, 0);
+
+    cv::Mat1b mat = (cv::Mat1b(2, 2) << 1,2,3,4);
+    auto& image = axes.create<Image>(mat);
+    cv::Mat3b r = axes.render(2, 2);
+
+    auto check = [&](bool yReverse, bool widthNeg, bool heightNeg) {
+        axes.setYReverse(yReverse);
+        image.setPosition(cv::Rect2d(0, 0, widthNeg ? -2 : 2, heightNeg ? -2 : 2));
+        cv::Mat3b r = axes.render(2, 2);
+        if ((!yReverse) != heightNeg) {
+            cv::flip(r, r, 0);
+        }
+        if (widthNeg) {
+            cv::flip(r, r, 1);
+        }
+        CHECK(r(0, 0)[0] == 1);
+        CHECK(r(0, 1)[0] == 2);
+        CHECK(r(1, 0)[0] == 3);
+        CHECK(r(1, 1)[0] == 4);
+    };
+
+    check(false, false, false);
+    check(false, false, true);
+    check(false, true, false);
+    check(false, true, true);
+    check(true, false, false);
+    check(true, false, true);
+    check(true, true, false);
+    check(true, true, true);
+}
+
+
