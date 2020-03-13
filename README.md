@@ -5,7 +5,9 @@
 [![Build Status](https://travis-ci.org/profactor/cv-plot.svg?branch=master)](https://travis-ci.org/profactor/cv-plot)
 
 # cv-plot
-fast modular opencv plotting library
+A fast modular opencv plotting library.
+
+[Screenshots](doc/screenshots.md)
 
 ## conan
 https://github.com/Profactor/cv-plot-conan
