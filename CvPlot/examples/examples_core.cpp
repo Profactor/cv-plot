@@ -185,12 +185,13 @@ TEST_CASE("pixel_text") {
 }
 
 TEST_CASE("double_matrix") {
-    cv::Mat1d mat(5, 5, 0.);
-    mat(0, 0) = 12;
-    mat(0, 1) = 12.3;
-    mat(0, 2) = 12.34;
-    mat(0, 3) = CV_PI;
-    mat(1, 0) = NAN;
+    cv::Mat1d mat(2, 4, 0.);
+    mat(0, 0) = -1;
+    mat(0, 0) = 1;
+    mat(1, 0) = CV_PI;
+    mat(1, 1) = INFINITY;
+    mat(1, 2) = -INFINITY;
+    mat(1, 3) = NAN;
     Axes axes = plotImage(mat);
     axes.find<Image>()->setNanColor(cv::Scalar(0, 0, 255));
     show(testCaseName(), axes);
