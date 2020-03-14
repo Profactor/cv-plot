@@ -1,5 +1,5 @@
 # Integration
-CvPlot requires OpenCV. I was tested with OpenCV 3.4 and 4.1, but it should run with any recent version on any platform. There are multiple ways to integrate CvPlot in your project:
+CvPlot requires OpenCV. It was tested with OpenCV 3.4 and 4.1, but it should run with any recent version on any platform. There are multiple ways to integrate CvPlot in your project:
 
 ## Header-only
 This is the easiest way and should almost always work. Just be sure you have OpenCV available in the include path.
