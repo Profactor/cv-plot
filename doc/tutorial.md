@@ -12,7 +12,9 @@ This is the easiest way and should almost always work. Just be sure you have Ope
 - Add this requirement to your conanfile: CvPlot/1.2@profactor-public/stable
 - Options:
    - CvPlot:header_only [default False]
-   - CvPlot:shared [default False]
+   - CvPlot:shared [default False] 
+- Conan will automatically install OpenCV from the conan center. You may [override](https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#overriding-requirements) the OpenCV version in your conanfile.
+- If you cannot find a matching binary package, use header_only=True.
 
 ## CMake (advanced)
 - The CMakeLists.txt file in the root folder expects that you run ´conan install´ before. 
