@@ -17,10 +17,17 @@ cv::Mat1b toMat1b(const cv::Mat& mat) {
     cv::Mat mask = floating ? (mat == mat) : cv::Mat();
     double minVal, maxVal;
     cv::minMaxLoc(mat, &minVal, &maxVal, nullptr, nullptr, mask);
-	const double alpha = 255.0 / (maxVal - minVal);
-	const double beta = -minVal * alpha;
+    if (std::isinf(minVal) || std::isinf(maxVal)) {
+        uint8_t finiteVal = std::isfinite(minVal) ? 0 : std::isfinite(maxVal) ? 255 : 127;
+        cv::Mat1b mat1b(mat.size(), finiteVal);
+        mat1b.setTo(0, mat == minVal);
+        mat1b.setTo(255, mat == maxVal);
+        return mat1b;
+    }
+    const double alpha = 255.0 / (maxVal - minVal);
+    const double beta = -minVal * alpha;
     cv::Mat1b mat1b;
-	mat.convertTo(mat1b, mat1b.type(), alpha, beta);
+    mat.convertTo(mat1b, mat1b.type(), alpha, beta);
     return mat1b;
 }
 
