@@ -135,12 +135,43 @@ CvPlot::show("contours", axes);
 
 ![zoom-contours](img/zoom-contours.gif)
 
+## Custom Drawables
+
+Everything that is drawn in CvPlot is derived from CvPlot::Drawable, even axes, titles, and grid. You can replace any of these standard drawables with your own implementation and extend CvPlot with your own drawables. 
+
+The following example draws a rectangle using a custom drawable. MyRect overrides two methods of CvPlot::Drawable:
+- render()
+    - Uses renderTarget.project() to calculate the position of the rectangle corners in pixel space
+    - Uses cv::rectangle() to draw directly to the render buffer
+- getBoundingRect()
+    - This is used to tell CvPlot how to determine automatic axes limits.
+
+```c++
+struct MyRect :public CvPlot::Drawable {
+	cv::Rect2d _rect = cv::Rect2d(3, 4, 5, 6);
+	void render(CvPlot::RenderTarget &renderTarget) override {
+		auto p1 = renderTarget.project({ _rect.x, _rect.y });
+		auto p2 = renderTarget.project({ _rect.x + _rect.width, _rect.y + _rect.height });
+		cv::rectangle(renderTarget.innerMat(), cv::Rect2d(p1, p2), cv::Scalar(0, 0, 255), 3);
+	}
+	bool getBoundingRect(cv::Rect2d &rect) override {
+		rect = _rect;
+		return true;
+	}
+};
+auto axes = CvPlot::makePlotAxes();
+axes.create<MyRect>();
+CvPlot::show("custom drawable", axes);
+```
+
+![custom-drawable](img/custom-drawable.PNG)
+	
 ## More Examples
 
 You can find more examples in https://github.com/Profactor/cv-plot/tree/master/CvPlot/examples.
 
 ### Logarithmic
-![/logarithmic](img/logarithmic.PNG)
+![logarithmic](img/logarithmic.PNG)
 
 ### Double Matrix
 ![double-matrix](img/double-matrix.PNG)
