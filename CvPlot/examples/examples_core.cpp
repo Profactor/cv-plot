@@ -76,9 +76,8 @@ TEST_CASE("contours") {
     cv::findContours(image == 200, contours, cv::RETR_LIST, cv::CHAIN_APPROX_TC89_L1);
     
     Axes axes = plotImage(image);
-    //create grid in front of image
-    axes.create<HorizontalGrid>(axes.find<YAxis>()).setColor(cv::Scalar::all(150));
-    axes.create<VerticalGrid>(axes.find<XAxis>()).setColor(cv::Scalar::all(150));
+    axes.enableHorizontalGrid();
+    axes.enableVerticalGrid();
     for (auto contour : contours) {
         contour.push_back(contour.front()); //close polygon
         axes.create<Series>(contour, "k-o");
