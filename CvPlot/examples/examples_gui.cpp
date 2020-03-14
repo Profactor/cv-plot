@@ -174,7 +174,7 @@ TEST_CASE("dragpoint") {
 		cv::Point2d _point = { 1,1 };
 		bool _dragging = false;
 		cv::Vec2d _dragOffset;
-		const double _size = 10;
+		const double _size = 30;
 		cv::Rect2d getRect(const Projection &projection) {
 			auto p = projection.project(_point);
 			cv::Point2d diag2(_size / 2, _size / 2);
