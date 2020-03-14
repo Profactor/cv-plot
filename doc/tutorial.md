@@ -1,14 +1,15 @@
 # Integration
-There are multiple ways to integrate CvPlot in your project:
+CvPlot requires OpenCV. I was tested with OpenCV 3.4 and 4.1, but it should run with any recent version on any platform. There are multiple ways to integrate CvPlot in your project:
 
 ## Header-only
+This is the easiest way and should almost always work. Just be sure you have OpenCV available in the include path.
 - Clone or download from https://github.com/Profactor/cv-plot/releases
 - Add CvPlot/inc to your project's include path
 
 ## Conan Package Manager
 [Conan](https://conan.io/) packages are available here: https://bintray.com/profactor/conan/CvPlot%3Aprofactor-public
-- run this from command line: conan remote add profactor https://api.bintray.com/conan/profactor/conan 
-- add this requirement to your conanfile: CvPlot/1.2@profactor-public/stable
+- Run this from command line: conan remote add profactor https://api.bintray.com/conan/profactor/conan 
+- Add this requirement to your conanfile: CvPlot/1.2@profactor-public/stable
 - Options:
    - CvPlot:header_only [default False]
    - CvPlot:shared [default False]
