@@ -1,13 +1,33 @@
-![CvPlot](img/series.png)
+![contours](img/contours.PNG)
 
-![CvPlot](img/contours.PNG)
+![series](img/series.png)
 
-![CvPlot](img/lenna.PNG)
+![lenna](img/lenna.PNG)
 
-![CvPlot](img/pixels.png)
+![show](img/show.gif)
 
-![CvPlot](img/zoom-contours.gif)
+![zoom-contours](img/zoom-contours.gif)
 
-![CvPlot](img/zoom-lenna.gif)
+![zoom-lenna](img/zoom-lenna.gif)
 
-![CvPlot](img/zoom-series.gif)
+![zoom-series](img/zoom-series.gif)
+
+![double-matrix](img/double-matrix.PNG)
+
+![drag](img/drag.gif)
+
+![logarithmic](img/logarithmic.PNG)
+
+![mandelbrot](img/mandelbrot.gif)
+
+![no-margin](img/no-margin.PNG)
+
+![one-minute](img/one-minute.png)
+
+![paint](img/paint.gif)
+
+![pixels](img/pixels.png)
+
+![profile](img/profile.gif)
+
+![benchmark](img/benchmark.gif)
