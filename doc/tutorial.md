@@ -141,6 +141,8 @@ CvPlot::show("custom drawable", axes);
 ```
 
 ![custom-drawable](img/custom-drawable.PNG)
+
+The [Mandelbrot](#mandelbrot) example below is another example of a custom drawable.
 	
 ## More Examples
 
