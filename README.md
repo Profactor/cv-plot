@@ -24,5 +24,8 @@ CvPlot is NOT and will never be a full featured plotting library. Many features 
 
 [Tutorial](doc/tutorial.md)
 
+[Other C++ OpenCV Libraries](doc/other-libraries.md)
+
+
 
 
