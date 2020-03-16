@@ -8,7 +8,7 @@
 Yes, another C++ plotting library. Because CvPlot is
 
 - Purely OpenCV based
-- Highly adaptable and extendable
+- [Highly adaptable and extendable](doc/tutorial.md#custom-drawables)
 - [Fast](doc/img/benchmark.gif)
 - [Easy to integrate](doc/integration.md)
 
