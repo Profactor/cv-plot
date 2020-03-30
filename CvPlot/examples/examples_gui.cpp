@@ -5,6 +5,7 @@
 #include <CvPlot/cvplot.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
+#include "DoublePendulum.h"
 
 namespace {
 
@@ -221,5 +222,23 @@ TEST_CASE("dragpoint") {
 	});
 
 	window.waitKey();
+}
+
+TEST_CASE("double_pendulum") {
+	DoublePendulum doublePendulum;
+	Axes axes = makePlotAxes();
+	axes.setXLim({ -2,2 })
+		.setYLim({ -2,2 })
+		.setFixedAspectRatio();
+	auto& trace = axes.create<Series>().setLineSpec("-g");
+	auto& pendulum = axes.create<Series>().setLineSpec("-ok");
+	std::vector<cv::Point2d> traceVec;
+	Window window(testCaseName(), axes, 500, 500);
+	do {
+		pendulum.setPoints(std::vector<cv::Point2d>{ {}, doublePendulum.point1(), doublePendulum.point2() });
+		trace.setPoints(doublePendulum.trace());
+		window.update();
+		doublePendulum.step();
+	} while (window.waitKey(10) == -1);
 }
 
