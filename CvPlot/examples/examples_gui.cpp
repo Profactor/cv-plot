@@ -232,7 +232,6 @@ TEST_CASE("double_pendulum") {
 		.setFixedAspectRatio();
 	auto& trace = axes.create<Series>().setLineSpec("-g");
 	auto& pendulum = axes.create<Series>().setLineSpec("-ok");
-	std::vector<cv::Point2d> traceVec;
 	Window window(testCaseName(), axes, 500, 500);
 	do {
 		pendulum.setPoints(std::vector<cv::Point2d>{ {}, doublePendulum.point1(), doublePendulum.point2() });

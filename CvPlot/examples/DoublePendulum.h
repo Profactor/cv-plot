@@ -16,7 +16,7 @@ public:
 		p1 += dp1 * dt;
 		p2 += dp2 * dt;
 		traceVec.push_back(point2());
-		if (traceVec.size() > 500) {
+		if (traceVec.size() > maxTraceSize) {
 			traceVec.erase(traceVec.begin());
 		}
 	}
