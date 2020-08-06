@@ -42,16 +42,16 @@ cv::Mat3b toMat3b(const cv::Mat& mat, int code) {
 
 CVPLOT_DEFINE_FUN
 cv::Mat3b toBgr(const cv::Mat& mat, cv::Scalar nanColor) {
-	switch (mat.type()) {
-	case CV_8UC3:
-		return mat;
-	case CV_8UC4:
-		return toMat3b(mat, cv::COLOR_BGRA2BGR);
+    switch (mat.type()) {
+    case CV_8UC3:
+        return mat;
+    case CV_8UC4:
+        return toMat3b(mat, cv::COLOR_BGRA2BGR);
     case CV_16S:
     case CV_16U:
     case CV_32S:
         return toMat3b(toMat1b(mat), cv::COLOR_GRAY2BGR);
-	case CV_32F:
+    case CV_32F:
     case CV_64F: {
         auto mat3b = toMat3b(toMat1b(mat), cv::COLOR_GRAY2BGR);
         if (nanColor != cv::Scalar()) {
@@ -59,11 +59,11 @@ cv::Mat3b toBgr(const cv::Mat& mat, cv::Scalar nanColor) {
         }
         return mat3b;
     }
-	case CV_8UC1:
+    case CV_8UC1:
         return toMat3b(mat, cv::COLOR_GRAY2BGR);
-	default:
-		throw std::runtime_error("Image: mat type not supported");
-	}
+    default:
+        throw std::runtime_error("Image: mat type not supported");
+    }
 }
 
 }
@@ -72,22 +72,22 @@ class Image::Impl {
 public:
     cv::Mat _mat;
     cv::Mat3b _matBgr;
-	cv::Rect2d _position;
-	bool _autoPosition = true;
-	int _interpolation = cv::INTER_AREA;
+    cv::Rect2d _position;
+    bool _autoPosition = true;
+    int _interpolation = cv::INTER_AREA;
     cv::Scalar _nanColor;
 
     cv::Mat _flippedMat;
     cv::Mat3b _flippedBgr;
     bool _flipVert = false;
-	bool _flipHorz = false;
+    bool _flipHorz = false;
 
-	void updateFlipped() {
-		if (_mat.empty()) {
-			return;
-		}
-		if (_flipVert || _flipHorz) {
-			int code = (_flipVert&&_flipHorz) ? -1 : (_flipVert ? 0 : +1);
+    void updateFlipped() {
+        if (_mat.empty()) {
+            return;
+        }
+        if (_flipVert || _flipHorz) {
+            int code = (_flipVert&&_flipHorz) ? -1 : (_flipVert ? 0 : +1);
             if (_flippedMat.data == _mat.data) {
                 _flippedMat = _flippedMat.clone();
             }
@@ -98,46 +98,46 @@ public:
             cv::flip(_matBgr, _flippedBgr, code);
         }else {
             _flippedMat = _mat;
-			_flippedBgr = _matBgr;
-		}
-	}
-	void render(RenderTarget & renderTarget) {
-		if (_mat.empty()) {
-			return;
-		}
-		cv::Mat3b& innerMat = renderTarget.innerMat();
-		cv::Rect innerRect(0, 0, innerMat.cols, innerMat.rows);
+            _flippedBgr = _matBgr;
+        }
+    }
+    void render(RenderTarget & renderTarget) {
+        if (_mat.empty()) {
+            return;
+        }
+        cv::Mat3b& innerMat = renderTarget.innerMat();
+        cv::Rect innerRect(0, 0, innerMat.cols, innerMat.rows);
 
-		auto tl = renderTarget.project(cv::Point2d(_position.x, _position.y));
-		auto br = renderTarget.project(cv::Point2d(_position.x + _position.width, _position.y + _position.height));
-		cv::Rect2d matRectDst(tl, br);
-		
-		bool flipVert = tl.y > br.y;
-		bool flipHorz = tl.x > br.x;
-		if (flipHorz != _flipHorz || flipVert != _flipVert) {
-			_flipHorz = flipHorz;
-			_flipVert = flipVert;
-			updateFlipped();
-		}
-		Internal::paint(_flippedBgr, innerMat, matRectDst, _interpolation, _flippedMat);
-	}
-	void updateAutoPosition() {
-		if (_autoPosition) {
-			_position = cv::Rect2d(0, 0, _mat.cols, _mat.rows);
-		}
-	}
+        auto tl = renderTarget.project(cv::Point2d(_position.x, _position.y));
+        auto br = renderTarget.project(cv::Point2d(_position.x + _position.width, _position.y + _position.height));
+        cv::Rect2d matRectDst(tl, br);
+        
+        bool flipVert = tl.y > br.y;
+        bool flipHorz = tl.x > br.x;
+        if (flipHorz != _flipHorz || flipVert != _flipVert) {
+            _flipHorz = flipHorz;
+            _flipVert = flipVert;
+            updateFlipped();
+        }
+        Internal::paint(_flippedBgr, innerMat, matRectDst, _interpolation, _flippedMat);
+    }
+    void updateAutoPosition() {
+        if (_autoPosition) {
+            _position = cv::Rect2d(0, 0, _mat.cols, _mat.rows);
+        }
+    }
 };
 
 CVPLOT_DEFINE_FUN
 Image::Image(const cv::Mat &mat) {
-	setMat(mat);
-	impl->_autoPosition = true;
+    setMat(mat);
+    impl->_autoPosition = true;
 }
 
 CVPLOT_DEFINE_FUN
 Image::Image(const cv::Mat &mat, const cv::Rect2d &position) {
-	setMat(mat);
-	setPosition(position);
+    setMat(mat);
+    setPosition(position);
 }
 
 CVPLOT_DEFINE_FUN
@@ -146,51 +146,51 @@ Image::~Image() {
 
 CVPLOT_DEFINE_FUN
 Image& Image::setMat(const cv::Mat & mat){
-	impl->_mat = mat;
+    impl->_mat = mat;
     impl->_matBgr = Imp::toBgr(impl->_mat, impl->_nanColor); //ref-copy when bgr, clone otherwise
-	impl->updateFlipped();
-	impl->updateAutoPosition();
-	return *this;
+    impl->updateFlipped();
+    impl->updateAutoPosition();
+    return *this;
 }
 
 CVPLOT_DEFINE_FUN
 cv::Mat Image::getMat() const{
-	return impl->_mat;
+    return impl->_mat;
 }
 
 CVPLOT_DEFINE_FUN
 Image& Image::setPosition(const cv::Rect2d & position){
-	impl->_position = position;
-	impl->_autoPosition = false;
-	return *this;
+    impl->_position = position;
+    impl->_autoPosition = false;
+    return *this;
 }
 
 CVPLOT_DEFINE_FUN
 cv::Rect2d Image::getPosition(){
-	return impl->_position;
+    return impl->_position;
 }
 
 CVPLOT_DEFINE_FUN
 Image & Image::setAutoPosition(bool autoPosition){
-	impl->_autoPosition = autoPosition;
-	impl->updateAutoPosition();
-	return *this;
+    impl->_autoPosition = autoPosition;
+    impl->updateAutoPosition();
+    return *this;
 }
 
 CVPLOT_DEFINE_FUN
 bool Image::getAutoPosition()const{
-	return impl->_autoPosition;
+    return impl->_autoPosition;
 }
 
 CVPLOT_DEFINE_FUN
 Image & Image::setInterpolation(int interpolation){
-	impl->_interpolation = interpolation;
-	return *this;
+    impl->_interpolation = interpolation;
+    return *this;
 }
 
 CVPLOT_DEFINE_FUN
 int Image::getInterpolation() const{
-	return impl->_interpolation;
+    return impl->_interpolation;
 }
 
 CVPLOT_DEFINE_FUN
@@ -210,15 +210,15 @@ cv::Scalar Image::getNanColor()const{
 
 CVPLOT_DEFINE_FUN
 void Image::render(RenderTarget & renderTarget){
-	impl->render(renderTarget);
+    impl->render(renderTarget);
 }
 
 CVPLOT_DEFINE_FUN
 bool Image::getBoundingRect(cv::Rect2d &rect) {
-	if (impl->_mat.empty()) {
-		return false;
-	}
-	rect = impl->_position;
-	return true;
+    if (impl->_mat.empty()) {
+        return false;
+    }
+    rect = impl->_position;
+    return true;
 }
 }

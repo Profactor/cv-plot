@@ -13,15 +13,15 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE VerticalLine : public LineBaseSub<VerticalLine> {
 public:
-	VerticalLine(double pos = std::nan(""), const std::string &lineSpec = "-");
-	~VerticalLine();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
+    VerticalLine(double pos = std::nan(""), const std::string &lineSpec = "-");
+    ~VerticalLine();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
     VerticalLine& setPos(double pos);
     VerticalLine& setBoundingRectEnabled(bool enabled);
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

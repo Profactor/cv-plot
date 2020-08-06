@@ -8,8 +8,8 @@
 namespace CvPlot {
 
 enum class LineType {
-	None,
-	Solid
+    None,
+    Solid
 };
 
 }

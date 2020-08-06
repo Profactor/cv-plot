@@ -14,16 +14,16 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE YLabel : public Drawable {
 public:
-	YLabel(const std::string &label="", YAxis* yAxis=nullptr);
-	~YLabel();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	YLabel& setLabel(const std::string &label);
-	std::string getLabel();
-	YLabel& setYAxis(YAxis* yAxis);
+    YLabel(const std::string &label="", YAxis* yAxis=nullptr);
+    ~YLabel();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    YLabel& setLabel(const std::string &label);
+    std::string getLabel();
+    YLabel& setYAxis(YAxis* yAxis);
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

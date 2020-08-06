@@ -11,20 +11,20 @@ namespace CvPlot {
 
 class RenderTarget :public Projection{
 public:
-	RenderTarget(RawProjection rawProjection, cv::Mat3b &outerMat)
-		: Projection(rawProjection)
-		,_outerMat(outerMat)
-		,_innerMat(outerMat(rawProjection.innerRect)){
-	}
-	cv::Mat3b& innerMat(){
-		return _innerMat;
-	}
-	cv::Mat3b& outerMat() {
-		return _outerMat;
-	}
+    RenderTarget(RawProjection rawProjection, cv::Mat3b &outerMat)
+        : Projection(rawProjection)
+        ,_outerMat(outerMat)
+        ,_innerMat(outerMat(rawProjection.innerRect)){
+    }
+    cv::Mat3b& innerMat(){
+        return _innerMat;
+    }
+    cv::Mat3b& outerMat() {
+        return _outerMat;
+    }
 private:
-	cv::Mat3b _outerMat;
-	cv::Mat3b _innerMat;
+    cv::Mat3b _outerMat;
+    cv::Mat3b _innerMat;
 };
 
 }

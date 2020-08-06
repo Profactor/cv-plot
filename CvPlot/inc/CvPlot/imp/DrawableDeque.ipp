@@ -13,36 +13,36 @@ DrawableDeque::DrawableDeque() {
 
 CVPLOT_DEFINE_FUN
 DrawableDeque::DrawableDeque(DrawableDeque && a)
-	:_drawables(std::move(a._drawables)) {
+    :_drawables(std::move(a._drawables)) {
 }
 
 CVPLOT_DEFINE_FUN
 DrawableDeque& DrawableDeque::operator=(DrawableDeque&& a) {
-	_drawables = std::move(a._drawables);
-	return *this;
+    _drawables = std::move(a._drawables);
+    return *this;
 }
 
 CVPLOT_DEFINE_FUN
 DrawableDeque::Drawables& DrawableDeque::drawables() {
-	return _drawables;
+    return _drawables;
 }
 
 CVPLOT_DEFINE_FUN
 DrawableDeque::Drawables::iterator DrawableDeque::findIterator(Drawable &drawable) {
-	return std::find_if(_drawables.begin(), _drawables.end(), [&](const std::unique_ptr<Drawable> &ptr) {
-		return ptr.get() == &drawable;
-	});
+    return std::find_if(_drawables.begin(), _drawables.end(), [&](const std::unique_ptr<Drawable> &ptr) {
+        return ptr.get() == &drawable;
+    });
 }
 
 CVPLOT_DEFINE_FUN
 bool DrawableDeque::getBoundingRect(cv::Rect2d &rect) {
     //combine rects of all items, ignore non-finite values
-	bool hasRect = false;
-	for (const auto &drawable : _drawables) {
-		cv::Rect2d r;
-		if (!drawable->getBoundingRect(r)) {
-			continue;
-		}
+    bool hasRect = false;
+    for (const auto &drawable : _drawables) {
+        cv::Rect2d r;
+        if (!drawable->getBoundingRect(r)) {
+            continue;
+        }
         if (!hasRect) {
             rect = r;
             hasRect = true;
@@ -58,8 +58,8 @@ bool DrawableDeque::getBoundingRect(cv::Rect2d &rect) {
             rect.height = std::max(rect.y + rect.height, r.y + r.height) - y;
             rect.y = y;
         }
-	}
-	return hasRect;
+    }
+    return hasRect;
 }
 
 }

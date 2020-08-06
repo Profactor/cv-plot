@@ -28,10 +28,10 @@ public:
     const T* operator->() const {
         return m.get();
     }
-	Pimpl& operator=(Pimpl &&a) {
-		m = std::move(a.m);
-		return *this;
-	}
+    Pimpl& operator=(Pimpl &&a) {
+        m = std::move(a.m);
+        return *this;
+    }
 private:
     Pimpl(const Pimpl<T>& o);
     std::unique_ptr<T> m;

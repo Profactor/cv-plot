@@ -13,16 +13,16 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE YAxis : public Drawable {
 public:
-	YAxis();
-	~YAxis();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	const std::vector<double> &getTicks()const;
-	int getWidth()const;
-	YAxis& setLocateRight(bool locateRight = true);
+    YAxis();
+    ~YAxis();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    const std::vector<double> &getTicks()const;
+    int getWidth()const;
+    YAxis& setLocateRight(bool locateRight = true);
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

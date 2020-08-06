@@ -13,16 +13,16 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE HorizontalGrid : public LineBaseSub<HorizontalGrid> {
 public:
-	HorizontalGrid(YAxis* yAxis=nullptr);
-	~HorizontalGrid();
-	HorizontalGrid& setYAxis(YAxis* yAxis);
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	HorizontalGrid& setEnabled(bool enabled);
-	bool getEnabled();
+    HorizontalGrid(YAxis* yAxis=nullptr);
+    ~HorizontalGrid();
+    HorizontalGrid& setYAxis(YAxis* yAxis);
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    HorizontalGrid& setEnabled(bool enabled);
+    bool getEnabled();
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

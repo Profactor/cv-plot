@@ -13,14 +13,14 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE XAxis : public Drawable {
 public:
-	XAxis();
-	~XAxis();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	const std::vector<double> &getTicks();
+    XAxis();
+    ~XAxis();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    const std::vector<double> &getTicks();
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

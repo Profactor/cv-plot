@@ -13,15 +13,15 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE Title : public Drawable {
 public:
-	Title(const std::string &title="");
-	~Title();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	Title& setTitle(const std::string &title);
-	std::string getTitle();
+    Title(const std::string &title="");
+    ~Title();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    Title& setTitle(const std::string &title);
+    std::string getTitle();
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

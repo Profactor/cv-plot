@@ -9,14 +9,14 @@ namespace CvPlot {
 
 CVPLOT_DEFINE_FUN
 void Group::render(RenderTarget &renderTarget) {
-	for (const auto &drawable : drawables()) {
-		drawable->render(renderTarget);
-	}
+    for (const auto &drawable : drawables()) {
+        drawable->render(renderTarget);
+    }
 }
 
 CVPLOT_DEFINE_FUN
 bool Group::getBoundingRect(cv::Rect2d &rect) {
-	return DrawableDeque::getBoundingRect(rect);
+    return DrawableDeque::getBoundingRect(rect);
 }
 
 }

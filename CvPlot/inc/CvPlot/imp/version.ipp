@@ -9,7 +9,7 @@ namespace CvPlot {
 
 CVPLOT_DEFINE_FUN
 std::string version() {
-	return CVPLOT_VERSION;
+    return CVPLOT_VERSION;
 }
 
 }

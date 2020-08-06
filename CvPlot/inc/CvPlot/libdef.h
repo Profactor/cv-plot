@@ -4,19 +4,19 @@
 #pragma once
 
 #ifdef _WIN32
-	#ifdef CVPLOT_SHARED
-		#ifdef CVPLOT_EXPORTS
-			#define CVPLOT_LIBRARY_INTERFACE __declspec(dllexport)
-		#else
-			#define CVPLOT_LIBRARY_INTERFACE __declspec(dllimport)
-		#endif
-	#else
-		//static
-		#define CVPLOT_LIBRARY_INTERFACE
-	#endif
+    #ifdef CVPLOT_SHARED
+        #ifdef CVPLOT_EXPORTS
+            #define CVPLOT_LIBRARY_INTERFACE __declspec(dllexport)
+        #else
+            #define CVPLOT_LIBRARY_INTERFACE __declspec(dllimport)
+        #endif
+    #else
+        //static
+        #define CVPLOT_LIBRARY_INTERFACE
+    #endif
 #else
-	//non-windows
-	#define CVPLOT_LIBRARY_INTERFACE
+    //non-windows
+    #define CVPLOT_LIBRARY_INTERFACE
 #endif
 
 #ifdef CVPLOT_HEADER_ONLY

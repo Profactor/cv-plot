@@ -15,12 +15,12 @@ namespace CvPlot {
 //Window is always header-only to avoid problems with static opencv
 class Window {
 public:
-	Window(std::string windowName, Axes &axes, int rows = 480, int cols = 640);
-	Window(Window&& a);
-	~Window();
-	Axes& getAxes();
-	void update();
-	void setMouseEventHandler(MouseEventHandler mouseEventHandler);
+    Window(std::string windowName, Axes &axes, int rows = 480, int cols = 640);
+    Window(Window&& a);
+    ~Window();
+    Axes& getAxes();
+    void update();
+    void setMouseEventHandler(MouseEventHandler mouseEventHandler);
     bool valid() const;
     int waitKey(int delay = 0);
     static int waitKey(const std::vector<Window*> &windows, int delay = 0);

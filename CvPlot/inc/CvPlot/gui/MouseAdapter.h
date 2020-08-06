@@ -18,13 +18,13 @@ class CVPLOT_LIBRARY_INTERFACE MouseAdapter {
 public:
     MouseAdapter(Axes &axes);
     MouseAdapter(MouseAdapter &&a);
-	~MouseAdapter();
-	Axes &getAxes();
-	bool mouseEvent(const MouseEvent &mouseEvent);
-	void setMouseEventHandler(MouseEventHandler mouseEventHandler);
+    ~MouseAdapter();
+    Axes &getAxes();
+    bool mouseEvent(const MouseEvent &mouseEvent);
+    void setMouseEventHandler(MouseEventHandler mouseEventHandler);
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

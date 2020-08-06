@@ -15,41 +15,41 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE LineBase : public DrawableSub<LineBase>{
 public:
-	LineBase(const std::string &lineSpec = "-");
-	~LineBase();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	LineBase& setLineSpec(const std::string &lineSpec);
-	LineBase& setLineType(LineType lineType);
-	LineBase& setColor(cv::Scalar color);
-	LineBase& setLineWidth(int lineWidth);
-	LineType getLineType();
-	cv::Scalar getColor();
-	int getLineWidth();
+    LineBase(const std::string &lineSpec = "-");
+    ~LineBase();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    LineBase& setLineSpec(const std::string &lineSpec);
+    LineBase& setLineType(LineType lineType);
+    LineBase& setColor(cv::Scalar color);
+    LineBase& setLineWidth(int lineWidth);
+    LineType getLineType();
+    cv::Scalar getColor();
+    int getLineWidth();
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 template<typename Derived>
 class LineBaseSub :public LineBase {
 public:
-	using LineBase::LineBase;
+    using LineBase::LineBase;
     Derived& setName(std::string name) {
         return static_cast<Derived&>(Drawable::setName(name));
     }
-	Derived& setLineSpec(const std::string &lineSpec) {
-		return static_cast<Derived&>(LineBase::setLineSpec(lineSpec));
-	}
-	Derived& setLineType(LineType lineType) {
-		return static_cast<Derived&>(LineBase::setLineType(lineType));
-	}
-	Derived& setColor(cv::Scalar color) {
-		return static_cast<Derived&>(LineBase::setColor(color));
-	}
-	Derived& setLineWidth(int lineWidth) {
-		return static_cast<Derived&>(LineBase::setLineWidth(lineWidth));
-	}
+    Derived& setLineSpec(const std::string &lineSpec) {
+        return static_cast<Derived&>(LineBase::setLineSpec(lineSpec));
+    }
+    Derived& setLineType(LineType lineType) {
+        return static_cast<Derived&>(LineBase::setLineType(lineType));
+    }
+    Derived& setColor(cv::Scalar color) {
+        return static_cast<Derived&>(LineBase::setColor(color));
+    }
+    Derived& setLineWidth(int lineWidth) {
+        return static_cast<Derived&>(LineBase::setLineWidth(lineWidth));
+    }
 };
 
 }

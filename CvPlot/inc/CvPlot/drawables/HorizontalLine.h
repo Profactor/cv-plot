@@ -13,15 +13,15 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE HorizontalLine : public LineBaseSub<HorizontalLine> {
 public:
-	HorizontalLine(double pos = std::nan(""), const std::string &lineSpec = "-");
-	~HorizontalLine();
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	HorizontalLine& setPos(double pos);
+    HorizontalLine(double pos = std::nan(""), const std::string &lineSpec = "-");
+    ~HorizontalLine();
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    HorizontalLine& setPos(double pos);
     HorizontalLine& setBoundingRectEnabled(bool enabled);
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }

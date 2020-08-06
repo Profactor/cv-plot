@@ -22,19 +22,19 @@ void paint(const cv::Mat3b &src, cv::Mat3b &dst, const cv::Rect2d &pos, int inte
 
 template<typename T>
 void normalize(cv::Rect_<T> &rect) {
-	if (rect.width < 0) {
-		rect.x += rect.width;
-		rect.width *= -1;
-	}
-	if (rect.height < 0) {
-		rect.y += rect.height;
-		rect.height *= -1;
-	}
+    if (rect.width < 0) {
+        rect.x += rect.width;
+        rect.width *= -1;
+    }
+    if (rect.height < 0) {
+        rect.y += rect.height;
+        rect.height *= -1;
+    }
 }
 
 template<typename T>
 std::vector<T> toVector(cv::InputArray inputArray) {
-	cv::Mat_<T> mat(inputArray.getMat());
+    cv::Mat_<T> mat(inputArray.getMat());
     if (!mat.isContinuous()) {
         mat = mat.clone();
     }
@@ -44,18 +44,18 @@ std::vector<T> toVector(cv::InputArray inputArray) {
 
 template<typename T>
 cv::Rect_<T> fixRatio(cv::Rect_<T> rect, double ratio, bool extend) {
-	normalize(rect);
-	double curRatio = rect.height / (double)rect.width;
-	cv::Rect_<T> fixed = rect;
-	if ((curRatio < ratio) == extend) {
-		fixed.height = static_cast<T>(rect.width * ratio);
-		fixed.y -= (fixed.height - rect.height) / 2;
-	}
-	else {
-		fixed.width = static_cast<T>(rect.height / ratio);
-		fixed.x -= (fixed.width - rect.width) / 2;
-	}
-	return fixed;
+    normalize(rect);
+    double curRatio = rect.height / (double)rect.width;
+    cv::Rect_<T> fixed = rect;
+    if ((curRatio < ratio) == extend) {
+        fixed.height = static_cast<T>(rect.width * ratio);
+        fixed.y -= (fixed.height - rect.height) / 2;
+    }
+    else {
+        fixed.width = static_cast<T>(rect.height / ratio);
+        fixed.x -= (fixed.width - rect.width) / 2;
+    }
+    return fixed;
 }
 
 }

@@ -3,9 +3,9 @@ project(${target} CXX)
 cmake_minimum_required (VERSION 3.9)
 add_executable(${target}
     mandelbrot.h
-	examples_core.cpp
-	examples_gui.cpp
-	main.cpp
+    examples_core.cpp
+    examples_gui.cpp
+    main.cpp
 )
 target_link_libraries(${target} CvPlot::CvPlot)
 
@@ -14,12 +14,12 @@ target_link_libraries(${target} Catch2::Catch2)
 
 #data
 function(copyfile file)
-	add_custom_command(TARGET ${target} POST_BUILD
-		COMMAND ${CMAKE_COMMAND} -E copy 
-			${CMAKE_CURRENT_SOURCE_DIR}/${file} 
-			$<TARGET_FILE_DIR:${target}>/${file}
-		COMMENT "copy ${file}..."
-	)
+    add_custom_command(TARGET ${target} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy 
+            ${CMAKE_CURRENT_SOURCE_DIR}/${file} 
+            $<TARGET_FILE_DIR:${target}>/${file}
+        COMMENT "copy ${file}..."
+    )
 endfunction()
 copyfile(exampledata/Lenna.jpg)
 

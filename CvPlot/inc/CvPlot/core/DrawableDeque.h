@@ -14,18 +14,18 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE DrawableDeque {
 public:
-	typedef std::deque<std::unique_ptr<Drawable>> Drawables;
+    typedef std::deque<std::unique_ptr<Drawable>> Drawables;
 
-	DrawableDeque();
-	DrawableDeque(const DrawableDeque&) = delete;
-	DrawableDeque &operator=(const DrawableDeque&) = delete;
-	DrawableDeque(DrawableDeque &&);
-	DrawableDeque& operator=(DrawableDeque&&);
+    DrawableDeque();
+    DrawableDeque(const DrawableDeque&) = delete;
+    DrawableDeque &operator=(const DrawableDeque&) = delete;
+    DrawableDeque(DrawableDeque &&);
+    DrawableDeque& operator=(DrawableDeque&&);
 
-	Drawables& drawables();
+    Drawables& drawables();
 
-	template<typename SomeDrawable, typename... Args>
-	SomeDrawable& create(Args&&... args);
+    template<typename SomeDrawable, typename... Args>
+    SomeDrawable& create(Args&&... args);
 
     template<typename SomeDrawable>
     SomeDrawable* find();
@@ -33,8 +33,8 @@ public:
     template<typename SomeDrawable>
     SomeDrawable* find(const std::string &name);
 
-	template<typename SomeDrawable>
-	SomeDrawable& findOrCreate();
+    template<typename SomeDrawable>
+    SomeDrawable& findOrCreate();
 
     template<typename SomeDrawable>
     SomeDrawable& findOrCreate(const std::string &name);
@@ -45,21 +45,21 @@ public:
     template<typename SomeDrawable>
     Drawables::iterator findIterator();
 
-	Drawables::iterator findIterator(Drawable &drawable);
+    Drawables::iterator findIterator(Drawable &drawable);
 
 protected:
-	bool getBoundingRect(cv::Rect2d &rect);
+    bool getBoundingRect(cv::Rect2d &rect);
 
 private:
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Drawables, _drawables);
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Drawables, _drawables);
 };
 
 template<typename SomeDrawable, typename... Args>
 SomeDrawable& DrawableDeque::create(Args&&... args) {
-	std::unique_ptr<SomeDrawable> ptr(new SomeDrawable(std::forward<Args>(args)...));
-	SomeDrawable& ref = *ptr.get();
-	_drawables.push_back(std::move(ptr));
-	return ref;
+    std::unique_ptr<SomeDrawable> ptr(new SomeDrawable(std::forward<Args>(args)...));
+    SomeDrawable& ref = *ptr.get();
+    _drawables.push_back(std::move(ptr));
+    return ref;
 }
 
 template<typename SomeDrawable>
@@ -96,8 +96,8 @@ DrawableDeque::Drawables::iterator DrawableDeque::findIterator(const std::string
 
 template<typename SomeDrawable>
 SomeDrawable& DrawableDeque::findOrCreate() {
-	SomeDrawable *p = find<SomeDrawable>();
-	return p ? *p : create<SomeDrawable>();
+    SomeDrawable *p = find<SomeDrawable>();
+    return p ? *p : create<SomeDrawable>();
 }
 
 template<typename SomeDrawable>

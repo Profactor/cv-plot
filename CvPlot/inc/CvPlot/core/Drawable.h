@@ -17,8 +17,8 @@ public:
     Drawable(std::string name = "");
     Drawable(Drawable &&a);
     virtual ~Drawable();
-	virtual void render(RenderTarget &renderTarget);
-	virtual bool getBoundingRect(cv::Rect2d &rect);
+    virtual void render(RenderTarget &renderTarget);
+    virtual bool getBoundingRect(cv::Rect2d &rect);
     Drawable& setName(std::string name);
     const std::string& getName();
 private:

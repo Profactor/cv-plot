@@ -14,16 +14,16 @@ namespace CvPlot {
 
 class CVPLOT_LIBRARY_INTERFACE VerticalGrid : public LineBaseSub<VerticalGrid> {
 public:
-	VerticalGrid(XAxis* xAxis=nullptr);
-	~VerticalGrid();
-	VerticalGrid& setXAxis(XAxis* xAxis);
-	void render(RenderTarget &renderTarget)override;
-	bool getBoundingRect(cv::Rect2d &rect)override;
-	VerticalGrid& setEnabled(bool enabled);
-	bool getEnabled();
+    VerticalGrid(XAxis* xAxis=nullptr);
+    ~VerticalGrid();
+    VerticalGrid& setXAxis(XAxis* xAxis);
+    void render(RenderTarget &renderTarget)override;
+    bool getBoundingRect(cv::Rect2d &rect)override;
+    VerticalGrid& setEnabled(bool enabled);
+    bool getEnabled();
 private:
-	class Impl;
-	CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
+    class Impl;
+    CVPLOT_NO_WARNING_DLL_INTERFACE(Internal::Pimpl<Impl>, impl);
 };
 
 }
