@@ -21,6 +21,7 @@ This is the easiest way and should almost always work. Just be sure you have Ope
 - You may also build without Conan or add CvPlot to some project with add_subdirectory. In this case, use the CvPlot subdirectory, not the root CMakeLists.txt!
 - Variables
    - CVPLOT_HEADER_ONLY [default ON]
+   - CVPLOT_USE_CONAN [default ON] Turn off to use opencv from elsewhere
    - CVPLOT_WITH_TESTS [default ON]
    - CVPLOT_WITH_EXAMPLES [default ON]
    - [BUILD_SHARED_LIBS](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html)
