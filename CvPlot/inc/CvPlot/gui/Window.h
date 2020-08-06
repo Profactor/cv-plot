@@ -39,7 +39,7 @@ Window::Window(std::string windowName, Axes &axes, int rows, int cols)
     if(valid()){
         cv::destroyWindow(windowName);
     }
-    cv::namedWindow(windowName, cv::WINDOW_NORMAL);
+    cv::namedWindow(windowName, cv::WINDOW_NORMAL | cv::WINDOW_FREERATIO);
     cv::resizeWindow(windowName, { cols,rows });
     axes.render(_mat, cv::Size(cols, rows));
     cv::imshow(windowName, _mat);
