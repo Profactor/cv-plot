@@ -36,7 +36,9 @@ Window::Window(std::string windowName, Axes &axes, int rows, int cols)
     :_mouseAdapter(axes)
     , _windowName(windowName) {
 
-    cv::destroyWindow(windowName); //destroy opencv window if existing
+    if(valid()){
+        cv::destroyWindow(windowName);
+    }
     cv::namedWindow(windowName, cv::WINDOW_NORMAL);
     cv::resizeWindow(windowName, { cols,rows });
     axes.render(_mat, cv::Size(cols, rows));
@@ -60,7 +62,9 @@ Window::Window(Window && a)
 
 inline
 Window::~Window() {
-    cv::destroyWindow(_windowName);
+    if(valid()){
+        cv::destroyWindow(_windowName);
+    }
 }
 
 inline
@@ -70,6 +74,9 @@ Axes& Window::getAxes() {
 
 inline
 void Window::update() {
+    if(!valid()){
+        return;
+    }
     auto rect = cv::getWindowImageRect(_windowName);
     _mouseAdapter.getAxes().render(_mat, rect.size());
     if (!_mat.empty()) {
@@ -84,7 +91,7 @@ void Window::setMouseEventHandler(MouseEventHandler mouseEventHandler) {
 
 inline
 bool Window::valid() const {
-    return cv::getWindowImageRect(_windowName).width > 0;
+    return getWindowProperty(_windowName, cv::WND_PROP_AUTOSIZE) >= 0;
 }
 
 inline
