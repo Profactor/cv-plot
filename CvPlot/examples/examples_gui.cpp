@@ -238,6 +238,6 @@ TEST_CASE("double_pendulum") {
 		trace.setPoints(doublePendulum.trace());
 		window.update();
 		doublePendulum.step();
-	} while (window.waitKey(10) == -1);
+	} while (window.waitKey(10) == -1 && window.valid());
 }
 
