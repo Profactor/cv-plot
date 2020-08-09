@@ -9,7 +9,7 @@ This is the easiest way and should almost always work. Just be sure you have Ope
 ## Conan Package Manager
 [Conan](https://conan.io/) packages are available here: https://bintray.com/profactor/conan/CvPlot%3Aprofactor-public
 - Run this from command line: conan remote add profactor https://api.bintray.com/conan/profactor/conan 
-- Add this requirement to your conanfile: CvPlot/1.2@profactor-public/stable
+- Add this requirement to your conanfile: CvPlot/1.2.1@profactor-public/stable
 - Options:
    - CvPlot:header_only [default False]
    - CvPlot:shared [default False] 
