@@ -5,6 +5,7 @@ CvPlot requires OpenCV. It was tested with OpenCV 3.4 and 4.1, but it should run
 This is the easiest way and should almost always work. Just be sure you have OpenCV available in the include path.
 - Clone or download from https://github.com/Profactor/cv-plot/releases
 - Add CvPlot/inc to your project's include path
+- Define CVPLOT_HEADER_ONLY before including CvPlot
 
 ## Conan Package Manager
 [Conan](https://conan.io/) packages are available here: https://bintray.com/profactor/conan/CvPlot%3Aprofactor-public
