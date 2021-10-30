@@ -1,6 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
-
+environment:
+  - PYTHON: "C:\\Python38"
 platform:
   - x64
 
