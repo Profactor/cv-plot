@@ -29,6 +29,7 @@ private:
     std::string _windowName;
     cv::Mat3b _mat;
     void updateSize();
+	void setMouseCallback();
 };
 
 inline
@@ -43,14 +44,7 @@ Window::Window(std::string windowName, Axes &axes, int rows, int cols)
     cv::resizeWindow(windowName, { cols,rows });
     axes.render(_mat, cv::Size(cols, rows));
     cv::imshow(windowName, _mat);
-    cv::setMouseCallback(windowName, [](int event, int x, int y, int flags, void* userdata) {
-        Window& window = *static_cast<Window*>(userdata);
-        window.updateSize();
-        MouseEvent mouseEvent(window._mouseAdapter.getAxes(), window._mat.size(), event, x, y, flags);
-        if (window._mouseAdapter.mouseEvent(mouseEvent)) {
-            window.update();
-        }
-        }, this);
+	setMouseCallback();
 }
 
 inline
@@ -58,6 +52,7 @@ Window::Window(Window && a)
     :_mouseAdapter(std::move(a._mouseAdapter))
     , _windowName(std::move(a._windowName))
     , _mat(std::move(a._mat) ){
+	setMouseCallback();
 }
 
 inline
@@ -138,6 +133,18 @@ void Window::updateSize() {
     if(rect.size() != _mat.size()) {
         update();
     }
+}
+
+inline
+void Window::setMouseCallback() {
+	cv::setMouseCallback(_windowName, [](int event, int x, int y, int flags, void* userdata) {
+		Window& window = *static_cast<Window*>(userdata);
+		window.updateSize();
+		MouseEvent mouseEvent(window._mouseAdapter.getAxes(), window._mat.size(), event, x, y, flags);
+		if (window._mouseAdapter.mouseEvent(mouseEvent)) {
+			window.update();
+		}
+		}, this);
 }
 
 }
