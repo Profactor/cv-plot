@@ -4,6 +4,9 @@ python: "3.7"
 dist: bionic
 compiler:
   - gcc
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install libgtk2.0-dev
 install:
   - pip install conan
   - conan user
