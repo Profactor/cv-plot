@@ -86,7 +86,11 @@ void Window::setMouseEventHandler(MouseEventHandler mouseEventHandler) {
 
 inline
 bool Window::valid() const {
-    return getWindowProperty(_windowName, cv::WND_PROP_AUTOSIZE) >= 0;
+    try {
+        return getWindowProperty(_windowName, cv::WND_PROP_AUTOSIZE) >= 0;
+    } catch (cv::Exception &e) {
+        return false;
+    }
 }
 
 inline
