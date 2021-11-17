@@ -114,3 +114,17 @@ if(CVPLOT_WITH_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
+#Install targets
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/${target}"
+        DESTINATION include
+        FILES_MATCHING
+        PATTERN "*.h" PATTERN "*.ipp")
+
+if(NOT CVPLOT_HEADER_ONLY)
+    install(TARGETS ${target}
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib)
+endif()
+
+
+
