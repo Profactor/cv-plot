@@ -88,7 +88,7 @@ inline
 bool Window::valid() const {
     try {
         return getWindowProperty(_windowName, cv::WND_PROP_AUTOSIZE) >= 0;
-    } catch (cv::Exception &e) {
+    } catch (cv::Exception) {
         return false;
     }
 }
