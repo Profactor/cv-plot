@@ -116,8 +116,8 @@ endif()
 
 #Install
 if(CVPLOT_HEADER_ONLY)
-	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" TYPE INCLUDE)
+	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include)
 else()
-	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" TYPE INCLUDE PATTERN "imp" EXCLUDE)
+	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include PATTERN "imp" EXCLUDE)
 endif()
 install(TARGETS ${target})
