@@ -114,3 +114,10 @@ if(CVPLOT_WITH_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
+#Install
+if(CVPLOT_HEADER_ONLY)
+	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" TYPE INCLUDE)
+else()
+	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" TYPE INCLUDE PATTERN "imp" EXCLUDE)
+endif()
+install(TARGETS ${target})
