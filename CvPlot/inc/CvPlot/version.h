@@ -6,7 +6,7 @@
 #include <CvPlot/libdef.h>
 #include <string>
 
-#define CVPLOT_VERSION "master"
+#define CVPLOT_VERSION "1.2.2"
 
 namespace CvPlot {
 
