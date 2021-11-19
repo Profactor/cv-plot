@@ -8,14 +8,7 @@ This is the easiest way and should almost always work. Just be sure you have Ope
 - Define CVPLOT_HEADER_ONLY before including CvPlot
 
 ## Conan Package Manager
-[Conan](https://conan.io/) packages are available here: https://bintray.com/profactor/conan/CvPlot%3Aprofactor-public
-- Run this from command line: conan remote add profactor https://api.bintray.com/conan/profactor/conan 
-- Add this requirement to your conanfile: CvPlot/1.2.1@profactor-public/stable
-- Options:
-   - CvPlot:header_only [default False]
-   - CvPlot:shared [default False] 
-- Conan will automatically install OpenCV from the conan center. You may [override](https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#overriding-requirements) the OpenCV version in your conanfile. (Warning: Overriding with precompiled library may be dangerous, depending on the binary compatibility of OpenCV.)
-- If you cannot find a matching binary package, use header_only=True.
+Conan packages for CvPlot currently not available due to bintray sunset. 
 
 ## CMake (advanced)
 - The CMakeLists.txt file in the root folder expects that you run ´conan install´ before. 
