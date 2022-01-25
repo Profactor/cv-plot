@@ -8,7 +8,7 @@ This is the easiest way and should almost always work. Just be sure you have Ope
 - Define CVPLOT_HEADER_ONLY before including CvPlot
 
 ## Conan Package Manager
-Conan packages for CvPlot currently not available due to bintray sunset. 
+Just add `cvplot/1.2.2` to your conan requires. The [conan center package](https://conan.io/center/cvplot) is header only and uses [opencv](https://conan.io/center/opencv) from conan center. You can find an [example here](https://github.com/Profactor/cv-plot/tree/master/doc/conan). 
 
 ## CMake (advanced)
 - The CMakeLists.txt file in the root folder expects that you run ´conan install´ before. 
