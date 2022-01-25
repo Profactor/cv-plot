@@ -1,0 +1,5 @@
+[requires]
+cvplot/1.2.2
+
+[generators]
+cmake
