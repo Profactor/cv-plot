@@ -247,7 +247,6 @@ void paint(const cv::Mat3b &src, cv::Mat3b &dst, const cv::Rect2d &pos, int inte
         const int fontFace = cv::FONT_HERSHEY_SIMPLEX;
         const double fontScale = .4;
         const int fontThickness = 1;
-        const cv::Scalar color = cv::Scalar(0, 0, 0);
         const cv::Size maxTextSize((int)kx - 5, (int)ky - 5);
         for (int r = rSrcVisEx.y; r < rSrcVisEx.y+ rSrcVisEx.height; r++) {
             for (int c = rSrcVisEx.x; c < rSrcVisEx.x+ rSrcVisEx.width; c++) {
