@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <common.h>
+
 #include <CvPlot/drawables/XLabel.h>
 #include <CvPlot/Internal/util.h>
 #include <opencv2/opencv.hpp>
@@ -12,7 +14,7 @@ namespace CvPlot {
 class XLabel::Impl {
 public:
     std::string _label;
-    const int _fontFace = cv::FONT_HERSHEY_SIMPLEX;
+    const int _fontFace = CVPLOT_FONT;
     const double _fontScale = .4;
     const int _fontThickness = 1;
     cv::Scalar _color = cv::Scalar(0, 0, 0);
