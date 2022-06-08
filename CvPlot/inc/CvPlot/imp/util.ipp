@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <common.h>
+
 #include <CvPlot/Internal/util.h>
 #include <opencv2/opencv.hpp>
 
@@ -244,7 +246,7 @@ void paint(const cv::Mat3b &src, cv::Mat3b &dst, const cv::Rect2d &pos, int inte
 
     //text
     if (!data.empty() && kx > 20 && ky > 20) {
-        const int fontFace = cv::FONT_HERSHEY_SIMPLEX;
+        const int fontFace = CVPLOT_FONT;
         const double fontScale = .4;
         const int fontThickness = 1;
         const cv::Size maxTextSize((int)kx - 5, (int)ky - 5);

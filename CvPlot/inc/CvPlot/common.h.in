@@ -1,0 +1,5 @@
+#pragma once
+
+#include <opencv2/imgproc.hpp>
+
+#cmakedefine CVPLOT_FONT cv::@CVPLOT_FONT@

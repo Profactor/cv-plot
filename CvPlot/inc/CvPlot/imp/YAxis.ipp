@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <common.h>
+
 #include <CvPlot/drawables/YAxis.h>
 #include <CvPlot/Internal/util.h>
 #include <opencv2/opencv.hpp>
@@ -11,7 +13,7 @@ namespace CvPlot {
 
 class YAxis::Impl {
 public:
-    const int _fontFace = cv::FONT_HERSHEY_SIMPLEX;
+    const int _fontFace = CVPLOT_FONT;
     const double _fontScale = .4;
     const int _fontThickness = 1;
     bool _locateRight = false;

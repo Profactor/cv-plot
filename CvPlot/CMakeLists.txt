@@ -6,6 +6,13 @@ set(target CvPlot)
 project (${target} CXX)
 
 option(CVPLOT_HEADER_ONLY "Use as header only library" ON)
+option(CVPLOT_UNICODE "Enable unicode font" OFF)
+if(CVPLOT_UNICODE)
+  set(CVPLOT_FONT FONT_HERSHEY_COMPLEX)
+else()
+  set(CVPLOT_FONT FONT_HERSHEY_SIMPLEX)
+endif()
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot/common.h.in common.h)
 
 if(CVPLOT_HEADER_ONLY)
     set(empty_or_interface INTERFACE)
@@ -80,6 +87,7 @@ target_sources(${target} ${public_or_interface}
 
 add_library(${target}::${target} ALIAS ${target})
 target_include_directories(${target} ${public_or_interface} ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+target_include_directories(${target} ${public_or_interface} ${CMAKE_CURRENT_BINARY_DIR})
 
 if(CVPLOT_HEADER_ONLY)
     target_compile_definitions(${target} INTERFACE CVPLOT_HEADER_ONLY)
@@ -117,6 +125,7 @@ endif()
 #Install
 if(CVPLOT_HEADER_ONLY)
 	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include)
+	install(FILES "${CMAKE_CURRENT_BINARY_DIR}/common.h" DESTINATION include)
 else()
 	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include PATTERN "imp" EXCLUDE)
 endif()
