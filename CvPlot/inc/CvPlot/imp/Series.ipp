@@ -7,6 +7,7 @@
 #include <CvPlot/Internal/util.h>
 #include <opencv2/opencv.hpp>
 #include <limits>
+#include <algorithm>
 
 namespace CvPlot {
 
@@ -103,13 +104,33 @@ public:
                 }
             }
         }
-        if (_markerType == MarkerType::Point) {
+        else if (_markerType == MarkerType::Point) {
             cv::Vec3b colorv3((unsigned char)color.val[0], (unsigned char)color.val[1], (unsigned char)color.val[2]);
             for (size_t i = 0; i < points.size(); i++) {
                 const auto p = (cv::Point)points[i];
                 if (p.x >= 0 && p.x < mat.cols && p.y >= 0 && p.y < mat.rows) {
                     mat(p.y, p.x) = colorv3;
                 }
+            }
+        }
+        else if (_markerType == MarkerType::Bar) {
+            cv::Vec3b colorv3((unsigned char)color.val[0], (unsigned char)color.val[1], (unsigned char)color.val[2]);
+            for (size_t i = 0; i < points.size(); i++) {
+                float barWidth = _markerSize;
+                if (_markerSize <= 0) {
+                    // marker size <= 0 means wide enough to touch adjacent bar
+                    if (i < points.size() - 1) {
+                        barWidth = points[i + 1].x - points[i].x;
+                    }
+                    else if (i > 0) {
+                        barWidth = points[i].x - points[i - 1].x;
+                    }
+                }
+                const auto p = (cv::Point)points[i];
+                // draw bars to bottom of plot (as opposed to y==0)
+                int barHeight = std::max(1, (int)ceilf(mat.rows - 1 - p.y)); // force some height so zero-height bars don't disappear
+                cv::Rect rect(p.x - (int)ceilf(barWidth / 2), mat.rows - barHeight, (int)ceilf(barWidth), barHeight);
+                cv::rectangle(mat, rect, colorv3, -1);
             }
         }
     }

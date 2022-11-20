@@ -23,7 +23,9 @@ public:
     bool _xLimAuto = true;
     bool _yLimAuto = true;
     bool _xTight = false;
-    bool _yTight = false;
+    double _xMargin = 0.0; // margin for ends of X axis, in model-space
+    bool _yTightTop = false;
+    bool _yTightBottom = false;
     bool _tightBox = false;
     bool _yReverse = false;
     bool _fixedAspectRatio = false;
@@ -129,13 +131,20 @@ public:
         auto yLim = calcYLim(boundingRect);
         cv::Rect2d viewport(xLim.first, yLim.first, xLim.second - xLim.first, yLim.second - yLim.first);
         const double ex = .1;
+        double xadd = 0.0;
         if (!_xTight) {
-            viewport.x -= viewport.width * ex / 2;
-            viewport.width *= 1 + ex;
+            xadd = viewport.width * ex / 2;
         }
-        if (!_yTight) {
-            viewport.y -= viewport.height * ex / 2;
-            viewport.height *= 1 + ex;
+        xadd = std::max(xadd, _xMargin);
+        viewport.x -= xadd;
+        viewport.width += 2 * xadd;
+        double yadd = viewport.height * ex / 2;
+        if (!_yTightBottom) {
+            viewport.y -= yadd;
+            viewport.height += yadd;
+        }
+        if (!_yTightTop) {
+            viewport.height += yadd;
         }
         return viewport;
     }
@@ -449,14 +458,33 @@ bool Axes::getXTight()const {
 }
 
 CVPLOT_DEFINE_FUN
+Axes& Axes::setXMargin(double margin) {
+    impl->_xMargin = margin;
+    return *this;
+}
+
+CVPLOT_DEFINE_FUN
+double Axes::getXMargin()const {
+    return impl->_xMargin;
+}
+
+CVPLOT_DEFINE_FUN
 Axes& Axes::setYTight(bool tight) {
-    impl->_yTight = tight;
+    impl->_yTightTop = tight;
+    impl->_yTightBottom = tight;
+    return *this;
+}
+
+CVPLOT_DEFINE_FUN
+Axes& Axes::setYTight(bool top, bool bottom) {
+    impl->_yTightTop = top;
+    impl->_yTightBottom = bottom;
     return *this;
 }
 
 CVPLOT_DEFINE_FUN
 bool Axes::getYTight()const {
-    return impl->_yTight;
+    return impl->_yTightTop && impl->_yTightBottom;
 }
 
 CVPLOT_DEFINE_FUN
