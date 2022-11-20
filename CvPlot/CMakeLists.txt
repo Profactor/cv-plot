@@ -101,6 +101,7 @@ target_link_libraries(${target} ${public_or_interface} ${OpenCV_LIBS})
 #Tests and Examples
 option(CVPLOT_WITH_TESTS "Build with tests" ON)
 option(CVPLOT_WITH_EXAMPLES "Build with examples" ON)
+option(CVPLOT_INSTALL "Do install" ON)
 
 if(CVPLOT_WITH_TESTS OR CVPLOT_WITH_EXAMPLES)
     add_subdirectory(ext/catch2 catch2)
@@ -114,10 +115,12 @@ if(CVPLOT_WITH_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-#Install
-if(CVPLOT_HEADER_ONLY)
-	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include)
-else()
-	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include PATTERN "imp" EXCLUDE)
+if(CVPLOT_INSTALL)
+    #Install
+    if(CVPLOT_HEADER_ONLY)
+    	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include)
+    else()
+    	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/inc/CvPlot" DESTINATION include PATTERN "imp" EXCLUDE)
+    endif()
+    install(TARGETS ${target})
 endif()
-install(TARGETS ${target})
